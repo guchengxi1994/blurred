@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 class BlurredImage extends StatelessWidget {
   BlurredImage.asset(
     String imagePath, {
-    Key key,
+    Key? key,
     this.blurValue = 5,
   })  : imageWidget = Image.asset(
           imagePath,
@@ -21,7 +21,7 @@ class BlurredImage extends StatelessWidget {
 
   BlurredImage.network(
     String url, {
-    Key key,
+    Key? key,
     this.blurValue = 5,
   })  : imageWidget = Image.network(
           url,
@@ -36,7 +36,7 @@ class BlurredImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Blurred(
-      imageWidget,
+      widget: imageWidget,
       blurValue: blurValue,
     );
   }
@@ -46,16 +46,16 @@ class BlurredImage extends StatelessWidget {
 /// Any widget passed to the `child` argument will not be blurred.
 /// The higher the `blurValue`, the stronger the blur effect.
 class Blurred extends StatelessWidget {
-  const Blurred(
-    this.widget, {
-    Key key,
+  const Blurred({
+    Key? key,
+    required this.widget,
     this.child,
     this.blurValue = 5,
     this.alignment = Alignment.center,
   }) : super(key: key);
 
   final Widget widget;
-  final Widget child;
+  final Widget? child;
   final double blurValue;
   final AlignmentGeometry alignment;
 
@@ -72,7 +72,7 @@ class Blurred extends StatelessWidget {
               child: Container(),
             ),
           ),
-          if (child != null) child,
+          if (child != null) child!,
         ],
       ),
     );
@@ -84,14 +84,14 @@ class Blurred extends StatelessWidget {
 /// The higher the `blurValue`, the stronger the blur effect.
 /// The `color` and `alpha` can be adjusted to suit your needs.
 class Acrylic extends StatelessWidget {
-  final Widget child;
+  final Widget? child;
   final double blurValue;
   final Color color;
   final int alpha;
   final AlignmentGeometry alignment;
 
   const Acrylic({
-    Key key,
+    Key? key,
     this.child,
     this.blurValue = 5,
     this.color = Colors.black,
@@ -102,7 +102,7 @@ class Acrylic extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Blurred(
-      Container(
+      widget: Container(
         color: color.withAlpha(alpha),
       ),
       blurValue: blurValue,
