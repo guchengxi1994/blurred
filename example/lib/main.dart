@@ -20,9 +20,9 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  MyHomePage({Key? key, this.title}) : super(key: key);
 
-  final String title;
+  final String? title;
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -30,7 +30,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final sliderMax = 20.0;
-  double sliderValue;
+  late double sliderValue;
 
   @override
   void initState() {
